@@ -19,16 +19,6 @@
 
 
 
-% Problem:
-%   Forced choice
-%   Lead to two language problem
-%   Makes hard to
-%       - Understand inner workings
-%       - Modify libraries
-%       - Write new libraries
-%   Julia aims to solve
-%
-
 %
 
 % This is the beginning of a real document!
@@ -37,6 +27,15 @@
 
 \begin{frame}
 	\maketitle
+\end{frame}
+
+\begin{frame}[c]{Goals for Today}
+    \begin{enumerate}
+        \item Why the need for \emph{yet another} language?
+        \item Overview of Julia features
+        \item Brief hands-on tutorial
+        \item Leave you with resources for future exploration!
+    \end{enumerate}
 \end{frame}
 
 \begin{frame}[c]{Who am I?}
@@ -57,8 +56,10 @@
 \centering
 \pause
     \begin{minipage}[t]{0.48\linewidth}
-        Easy To Use Languages\\
-        \emph{Python, R, Matlab}
+        \begin{center}
+            Easy To Use Languages\\
+            \emph{Python, R, Matlab}
+        \end{center}
         \begin{itemize}
             \item<3-> Interactive
             \item<4-> Dynamic typed
@@ -68,8 +69,10 @@
     \end{minipage}
     \vrule{}
     \begin{minipage}[t]{0.48\linewidth}%
-        Fast Languages\\
-        \emph{C, Java}
+        \begin{center}
+            Fast Languages\\
+            \emph{C, Java}
+        \end{center}
         \begin{itemize}
             \item<3-> Compiled
             \item<4-> Static Typed
@@ -79,11 +82,10 @@
     \end{minipage}
 \end{frame}
 
-\begin{frame}[c]{}
-\begin{itemize}
-    \item Write core libraries in C or Fortran
-    \item Wrap in a nice language (R or Python)
-\end{itemize}
+\begin{frame}[c]{Hybrid Solution}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{figures/wrapper.png}
+    \end{figure}
 \end{frame}
 
 \begin{frame}[c]{Two Language Problem}
@@ -127,6 +129,7 @@ end
     \end{minted}
 \pause
 Python: \texttt{sum\_sequence(0, 1000000)}: 78.8 milliseconds\\
+R: \texttt{sum\_sequence(0, 1000000)}: 274 miliseconds \\
 Julia: \texttt{sum\_sequence(0, 1\_000\_000)}: 0.0037 milliseconds
 \end{frame}
 
@@ -278,6 +281,46 @@ math.sin(math.pi / 4) - sin(pi / 4)
 \end{minted}
 \end{frame}
 
+\begin{frame}[c]{Python Users}
+\emph{Familiar:}
+\begin{itemize}
+    \item Duck-typing
+    \item Pass by reference
+    \item Iterators
+    \item List (and array) comprehensions
+\end{itemize}
+\emph{Unfamiliar:}
+\begin{itemize}
+    \item No integer overflow checking
+    \begin{itemize}
+        \item \texttt{SafeInts} package available
+    \end{itemize}
+    \item Built in Package Manager
+    \begin{itemize}
+        \item No name spaces \emph{yet}
+    \end{itemize}
+    \item Not white-space sensitive
+    \item Indexes start at 1, not 0
+    \item Multiple dispatch for functions
+\end{itemize}
+\end{frame}
+
+\begin{frame}[c]{R Users}
+\emph{Familiar:}
+\begin{itemize}
+    \item Multiple dispatch
+    \item Built in package manager
+\end{itemize}
+\emph{Unfamiliar:}
+\begin{itemize}
+    \begin{itemize}
+        \item \texttt{SafeInts} package available
+    \end{itemize}
+    \item Pass-by-reference and mutable / immutable data types
+    \item LOTS of syntactic sugar
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}[c]{Not 1.0 Yet...}
 Currently Stable Release: 0.6.2
@@ -301,13 +344,6 @@ Pending Release: 0.7
 
 \begin{frame}[c]{Hands-on Tutorials!}
     Go to \url{juliabox.com}, create an account, and navigate to \texttt{tutorials/intro-to-julia}.
-\end{frame}
-
-\begin{frame}[c]{Resources}
-    Comparing Julia, Python, and Matlab side by side: \\
-    \url{https://cheatsheets.quantecon.org/} \\
-    Amazing cheatsheet for Julia: \\
-    \url{https://juliadocs.github.io/Julia-Cheat-Sheet/}
 \end{frame}
 
 
