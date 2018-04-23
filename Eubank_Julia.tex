@@ -84,7 +84,7 @@
 
 \begin{frame}[c]{Hybrid Solution}
     \begin{figure}
-        \includegraphics[width=\textwidth]{figures/wrapper.png}
+        \includegraphics[width=\textwidth]{figures/wrappers.png}
     \end{figure}
 \end{frame}
 
@@ -134,18 +134,19 @@ Julia: \texttt{sum\_sequence(0, 1\_000\_000)}: 0.0037 milliseconds
 \end{frame}
 
 \begin{frame}[c]{}
-    \includegraphics[width=\textwidth]{figures/benchmarks.png}
+    \includegraphics[width=1\textwidth]{figures/benchmarks.png}
 \end{frame}
 
 
 \begin{frame}[fragile, t]{Why Python (and R) are slow }
 \begin{minted}{python}
 # Python
-def sum_sequence(0, 1000000):
+def sum_sequence(start, stop):
     total = 0
     for i in range(start, stop):
         total = total + i
     return total
+sum_sequence(0, 1000000)
 \end{minted}
 \pause
 \begin{itemize}
@@ -169,6 +170,7 @@ function sum_sequence(start, stop)
     end
     return total
 end
+sum_sequence(0, 1_000_000)
     \end{minted}
 \begin{itemize}
     \pause \item  Treats function as a small program.
@@ -201,10 +203,7 @@ sum_sequence(0, 1_000_000)
 
 
 \begin{frame}[fragile]{Features: Just Write the Loop}
-\begin{itemize}
-    \item No more need to always vectorize!
-    \item But if you want, you still can with \texttt{.} notation.
-\end{itemize}
+No more need to always vectorize!
 \begin{minted}{julia}
 x = rand(100)
 
@@ -212,7 +211,9 @@ x = rand(100)
 for i in 1:length(x)
     x[i] = sqrt(x[i])
 end
-
+\end{minted}
+But you can if you want with \texttt{.} notation.
+\begin{minted}{julia}
 # Vectorized
 x = sqrt.(x)
 \end{minted}
@@ -230,6 +231,7 @@ num_heads = @parallel (+) for i in 1:1_000_000
                 rand(Bool)
             end
 \end{minted}
+\pause
 Or:
 \begin{minted}{julia}
 a = SharedArray{Float64}(1_000)
@@ -247,21 +249,31 @@ svds = pmap(svd, list_of_matrices)
 \end{minted}
 \end{frame}
 
-\begin{frame}[fragile]{Features: Support for Unicode}
-OLS with Unicode:
+\begin{frame}[fragile]{Features: \emph{Extensive} Linear Algebra Optimizations}
 \begin{minted}{julia}
-N = 4000
-x = randn(N, 3)
-ϵ = randn(N)
-β = [2, 1, 90]
-y = x * β + ϵ
-
-β̂ = inv(x' * x) * x' * y
-ϵ̂ = y - x * β̂
+julia> A = randn(n,n)
+julia> Asym = A + A'
+julia> issymmetric(Asym)
+true
 \end{minted}
+\pause
+Can also declare special structures (to deal with floating point errors):
+\begin{itemize}
+    \item Triangular, Diagonal, Tridiagonal, Sparse Symmetric, etc..
+\end{itemize}
+\pause (Factorizations done using \texttt{LAPACK} and \texttt{UMFPACK} libraries)
 \end{frame}
 
-
+\begin{frame}[fragile]{Features: Scientific / Math Types Inbuilt}
+Base types:
+\begin{itemize}
+    \item Rationals
+    \item Imaginary Numbers
+    \item BigInts
+\end{itemize}
+\pause
+Plus, user types as fast as Base types.
+\end{frame}
 
 \begin{frame}[fragile]{Features: Easy C Integration}
 If you need it, use \texttt{ccall}.
@@ -281,46 +293,19 @@ math.sin(math.pi / 4) - sin(pi / 4)
 \end{minted}
 \end{frame}
 
-\begin{frame}[c]{Python Users}
-\emph{Familiar:}
-\begin{itemize}
-    \item Duck-typing
-    \item Pass by reference
-    \item Iterators
-    \item List (and array) comprehensions
-\end{itemize}
-\emph{Unfamiliar:}
-\begin{itemize}
-    \item No integer overflow checking
-    \begin{itemize}
-        \item \texttt{SafeInts} package available
-    \end{itemize}
-    \item Built in Package Manager
-    \begin{itemize}
-        \item No name spaces \emph{yet}
-    \end{itemize}
-    \item Not white-space sensitive
-    \item Indexes start at 1, not 0
-    \item Multiple dispatch for functions
-\end{itemize}
-\end{frame}
+\begin{frame}[fragile]{Features: Support for Unicode}
+OLS with Unicode:
+\begin{minted}{julia}
+N = 4000
+x = randn(N, 3)
+ϵ = randn(N)
+β = [2, 1, 90]
+y = x * β + ϵ
 
-\begin{frame}[c]{R Users}
-\emph{Familiar:}
-\begin{itemize}
-    \item Multiple dispatch
-    \item Built in package manager
-\end{itemize}
-\emph{Unfamiliar:}
-\begin{itemize}
-    \begin{itemize}
-        \item \texttt{SafeInts} package available
-    \end{itemize}
-    \item Pass-by-reference and mutable / immutable data types
-    \item LOTS of syntactic sugar
-\end{itemize}
+β̂ = inv(x' * x) * x' * y
+ϵ̂ = y - x * β̂
+\end{minted}
 \end{frame}
-
 
 \begin{frame}[c]{Not 1.0 Yet...}
 Currently Stable Release: 0.6.2
@@ -329,7 +314,7 @@ Pending Release: 0.7
     \item Expected this summer ($\sim$ June 2018?)
     \item 0.7 is 1.0 with depreciation warnings
     \begin{itemize}
-        \item If you code works with 0.7, syntax won't change!
+        \item If your code works with 0.7, syntax won't change!
     \end{itemize}
 \end{itemize}
 \end{frame}
@@ -343,7 +328,14 @@ Pending Release: 0.7
 \end{frame}
 
 \begin{frame}[c]{Hands-on Tutorials!}
-    Go to \url{juliabox.com}, create an account, and navigate to \texttt{tutorials/intro-to-julia}.
+    Go to \url{juliabox.com}, create an account, and navigate to \texttt{tutorials/intro-to-julia}.\\
+    Today we'll do:
+    \begin{itemize}
+        \item 1. Getting Started
+        \item 4. Loops
+        \item 6. Functions
+        \item 10. Multiple Dispatch
+    \end{itemize}
 \end{frame}
 
 
