@@ -39,9 +39,64 @@
 \end{itemize}
 
 
+\subsection*{Installation / Getting Julia}
+\begin{itemize}
+    \item You can get Julia at \url{www.julialang.org/downloads}.
+    \item Interactive Development Environment: the most popular IDE is called Juno, and is provided through that Atom text editor by installing the \texttt{uber-juno} package. Note requires prior install of Julia from \url{www.julialang.org/downloads}. Detailed instructions: \url{https://github.com/JunoLab/uber-juno/blob/master/setup.md}
+\end{itemize}
+
+\subsection*{Tutorials}
+\begin{itemize}
+    \item Great tutorials on \url{www.juliabox.com}. Just log in and go to Tutorials.
+    \item For 2 hour video of Julia Computing instructor walking through these tutorials, go to \url{https://julialang.org/learning/} and select \emph{Intro to Julia}.
+\end{itemize}
+
 \subsection*{Julia on ACCRE}
 \begin{itemize}
     \item Julia example scripts and installation: \url{https://github.com/accre/SLURM/tree/master/julia-job}
 \end{itemize}
+
+
+\subsection*{Contrasts with Python}
+\emph{Familiar:}
+\begin{itemize}
+    \item Duck-typing
+    \item Pass by reference
+    \item Iterators
+    \item List (and array) comprehensions
+\end{itemize}
+\emph{Unfamiliar:}
+\begin{itemize}
+    \item No integer overflow checking
+    \begin{itemize}
+        \item \texttt{SafeInts} package available
+    \end{itemize}
+    \item Built in Package Manager
+    \begin{itemize}
+        \item No name spaces \emph{yet}; coming in new package manager with 1.0 release.
+    \end{itemize}
+    \item Not white-space sensitive
+    \item Indexes start at 1, not 0
+    \item Multiple dispatch for functions
+    \item Loops as fast as vectorized functions
+\end{itemize}
+
+\subsection*{Contrasts with R}
+\emph{Familiar:}
+\begin{itemize}
+    \item Multiple dispatch
+    \item Built in package manager
+\end{itemize}
+\emph{Unfamiliar:}
+\begin{itemize}
+    \item No integer overflow checking
+    \begin{itemize}
+        \item \texttt{SafeInts} package available
+    \end{itemize}
+    \item Pass-by-reference and mutable / immutable data types
+    \item LOTS of syntactic sugar
+    \item Loops as fast as vectorized functions
+\end{itemize}
+
 
 \end{document}
