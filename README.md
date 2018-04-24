@@ -14,3 +14,5 @@ The three components of this repo are:
     - How to get Julia to work on the Vanderbilt ACCRE computing cluster.
     - An overview of the package ecosystem -- where to go for all your needs.
 - Eubank_PassByReference.pdf: A lot of people coming to Julia from R may be unfamiliar with a pass-by-reference language. I've found many programmers take this knowledge for granted, so it doesn't come up in tutorials, but it's super important and if its not explained, super confusing. **If you are primarily an R user, please make sure to check out the Pass By Reference pdf** on the principles of pass-by-reference programming languages. 
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
