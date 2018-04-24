@@ -30,6 +30,35 @@
 	\maketitle
 \end{frame}
 
+\begin{frame}[c]{Show of Hands...}
+    \large
+    Work primarily in R?
+\end{frame}
+\begin{frame}[c]{Show of Hands...}
+    \large
+    Work primarily in Python?
+\end{frame}
+\begin{frame}[c]{Show of Hands...}
+    \large
+    Work primarily in Matlab?
+\end{frame}
+\begin{frame}[c]{Show of Hands...}
+    \large
+    Work regularly in C?
+\end{frame}
+
+\begin{frame}[c]{Show of Hands...}
+    \large
+    Social sciences?
+\end{frame}
+
+\begin{frame}[c]{Show of Hands...}
+    \large
+    Natural sciences?
+\end{frame}
+
+
+
 \begin{frame}[c]{Goals for Today}
     \begin{enumerate}
         \item Why the need for \emph{yet another} language?
@@ -44,6 +73,7 @@
     \item Post-Doc at Center for Study of Democratic Institutions
     \item Study social networks using cell-phone meta-data
     \begin{itemize}
+        \item Lots of tabular data manipulations
         \item Lots of simulations on networks with $>$10,000,000 nodes
     \end{itemize}
     \item Regularly work with Stata, R, Python, and Julia
@@ -101,7 +131,9 @@ $\Rightarrow$ True if you know C... \\
 \pause $\Rightarrow$ \emph{Extremely} true if you don't know C!
 \end{frame}
 
-\begin{frame}[c]{No Two Language Problem}
+\begin{frame}[c]{Julia: Solution Two Language Problem}
+Julia is a new, interactive, dynamic programming language written specifically with numerical computing in mind. \\
+\vspace{0.2cm}
 Base Julia is written \emph{in Julia}
 \begin{itemize}
     \item Even things like definitions of integers!
@@ -114,7 +146,7 @@ Most packages written in pure Julia
 # Python
 def sum_sequence(start, stop):
     total = 0
-    for i in range(start, stop):
+    for i in range(start, stop + 1):
         total = total + i
     return total
 \end{minted}
@@ -144,7 +176,7 @@ Julia: \texttt{sum\_sequence(0, 1\_000\_000)}: 0.0037 milliseconds
 # Python
 def sum_sequence(start, stop):
     total = 0
-    for i in range(start, stop):
+    for i in range(start, stop + 1):
         total = total + i
     return total
 sum_sequence(0, 1000000)
@@ -216,7 +248,7 @@ function return_if_even(a_number)
 end
 \end{minted}
 You can help the compiler by ensuring that, \alert{conditional on the type of arguments}, all intermediate and output variables will always be of the same type.\\
-This function is \alert{not} type stable because:
+\pause This function is \alert{not} type stable because:
 \begin{itemize}
     \item If \texttt{a\_number} is an even integer, it returns an integer, but
     \item If \texttt{a\_number} is an odd integer, it returns a string.
@@ -316,7 +348,7 @@ math.sin(math.pi / 4) - sin(pi / 4)
 \end{frame}
 
 \begin{frame}[fragile]{Features: Support for Unicode}
-OLS with Unicode:
+Ordinary least squares with Unicode:
 \begin{minted}{julia}
 N = 4000
 x = randn(N, 3)
@@ -335,9 +367,10 @@ You can write Julia code that writes Julia code!
 
 
 
-\subsection*{Contrasts with Python}
+\begin{frame}{Contrasts with Python}
 \emph{Familiar:}
 \begin{itemize}
+    \itemsep0em
     \item Duck-typing
     \item Pass by reference
     \item Iterators
@@ -345,40 +378,45 @@ You can write Julia code that writes Julia code!
 \end{itemize}
 \emph{Unfamiliar:}
 \begin{itemize}
+    \itemsep0em
     \item No integer overflow checking
     \begin{itemize}
+        \itemsep0em
         \item \texttt{SafeInts} package available
     \end{itemize}
     \item Built in Package Manager
     \begin{itemize}
-        \item No \texttt{conda} needed!
-        \item No name spaces \emph{yet}; coming in new package manager with 1.0 release.
+        \itemsep0em
+        \item No name spaces \emph{yet}; coming in new package manager.
     \end{itemize}
+    \itemsep0em
     \item Not white-space sensitive
     \item Indexes start at 1, not 0
     \item Multiple dispatch for functions
-    \item Loops as fast as vectorized functions
 \end{itemize}
+\end{frame}
 
-\subsection*{Contrasts with R}
+\begin{frame}{Contrasts with R}
 \emph{Familiar:}
 \begin{itemize}
+    \itemsep0em
     \item Multiple dispatch
     \item Built in package manager
 \end{itemize}
 \emph{Unfamiliar:}
 \begin{itemize}
+    \itemsep0em
     \item No integer overflow checking
-    \begin{itemize}
-        \item \texttt{SafeInts} package available
-    \end{itemize}
     \item Pass-by-reference and mutable / immutable data types
-    \item LOTS of syntactic sugar
+    \begin{itemize}
+        \item See Eubank\_PassByReference.pdf on github.
+    \end{itemize}
     \item Loops as fast as vectorized functions
 \end{itemize}
+\end{frame}
 
 \begin{frame}[c]{Not 1.0 Yet...}
-Currently Stable Release: 0.6.2
+Currently Stable Release: 0.6.2 \\
 Pending Release: 0.7
 \begin{itemize}
     \item Expected this summer ($\sim$ June 2018?)
@@ -401,8 +439,6 @@ Pending Release: 0.7
     Go to \url{juliabox.com}, create an account, and navigate to \texttt{tutorials/intro-to-julia}.\\
     Today we'll do:
     \begin{itemize}
-        \item 1. Getting Started
-        \item 4. Loops
         \item 6. Functions
         \item 10. Multiple Dispatch
     \end{itemize}
@@ -410,7 +446,16 @@ Pending Release: 0.7
 
 
 \begin{frame}[c]{Next Steps}
- See \texttt{Eubank\_JuliaResources.pdf} at \url{www.github.com/nickeubank/JuliaOverview} for links for installing Julia, installing an IDE, where to find tutorials, and more!
+For information on:
+\begin{itemize}
+    \item How to install Julia
+    \item How to get help with Julia
+    \item Where to find more tutorials
+    \item Most-used packages
+\end{itemize}
+See \texttt{Eubank\_JuliaResources.pdf} at \\
+\vspace*{0.2cm} \\
+\url{www.github.com/nickeubank/JuliaOverview}
 \end{frame}
 
 
