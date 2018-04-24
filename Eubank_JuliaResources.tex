@@ -47,56 +47,34 @@
 
 \subsection*{Tutorials}
 \begin{itemize}
-    \item Great tutorials on \url{www.juliabox.com}. Just log in and go to Tutorials.
+    \item Great tutorials on \url{www.juliabox.com}. Just log in and go to Tutorials/Intro-To-Julia.
     \item For 2 hour video of Julia Computing instructor walking through these tutorials, go to \url{https://julialang.org/learning/} and select \emph{Intro to Julia}.
 \end{itemize}
+
 
 \subsection*{Julia on ACCRE}
 \begin{itemize}
     \item Julia example scripts and installation: \url{https://github.com/accre/SLURM/tree/master/julia-job}
 \end{itemize}
 
-
-\subsection*{Contrasts with Python}
-\emph{Familiar:}
+\subsection*{Commonly used / well-supported packages}
+The Julia package community has developed into a set of families (e.g. JuliaStats, JuliaPlots, JuliaData, etc.). In general, the best packages are those found under one of these families (good packages created outside a family tend to get integrated). Here are some big ones:
 \begin{itemize}
-    \item Duck-typing
-    \item Pass by reference
-    \item Iterators
-    \item List (and array) comprehensions
-\end{itemize}
-\emph{Unfamiliar:}
-\begin{itemize}
-    \item No integer overflow checking
+    \item \texttt{DataFrames.jl}: OK, this is a package not a family (the family is \href{https://github.com/JuliaData}{\underline{JuliaData}}), but it's probably the one you'll use most. It's basically \texttt{data.frames} from R -- it allows for tables whose columns are of different types. Details at \url{http://juliadata.github.io/DataFrames.jl/stable/}.
     \begin{itemize}
-        \item \texttt{SafeInts} package available
+        \item Note DataFrames is currently a little slow with missing data -- this is one of the things the compiler update coming in 0.7 is meant to fix.
+        \item The missing data type is currently a stand-alone library (\texttt{Missings.jl}), but it's getting integrated into the base library in 0.7.
+        \item JuliaData also manages \texttt{CSV.jl}, \texttt{Feather.jl} for reading csvs and feather datasets in Julia as DataFrames.
     \end{itemize}
-    \item Built in Package Manager
-    \begin{itemize}
-        \item No name spaces \emph{yet}; coming in new package manager with 1.0 release.
-    \end{itemize}
-    \item Not white-space sensitive
-    \item Indexes start at 1, not 0
-    \item Multiple dispatch for functions
-    \item Loops as fast as vectorized functions
+    \item \href{http://docs.juliaplots.org}{\underline{JuliaPlots}}: Manages the \texttt{Plot.jl} library, which provides a unified front end for plotting. It has one consistent interface, but can be used with lots of different back-ends, including \texttt{pyplot}, \texttt{plot.ly}, and \texttt{GR}. Details at \url{http://docs.juliaplots.org}.
+    \item \href{https://github.com/JuliaIO/}{\underline{JuliaIO}}: manages most I/O libraries except for the two libraries in JuliaData noted above (\texttt{CSV.jl} and \texttt{Feather.jl}), including \texttt{HDF5.jl}, \texttt{JLD.jl} (for saving Julia objects as binaries), and \texttt{JSON.jl}.
+    \item \href{https://www.juliaopt.org/}{\underline{JuliaOpt}}: set of packages for numerical optimization. \url{https://www.juliaopt.org/}
+    \item \href{http://juliastats.github.io/}{\underline{JuliaStats}}: Family of packages that implement core statistics functionality (\url{https://github.com/JuliaStats/}). \texttt{Distributions.jl} for random number generators from lots of distributions, \texttt{StatsBase.jl} for basic (mostly-univariate) statistics, \texttt{GLM.jl} for linear models, and \texttt{MLBase.jl} for machine learning.
+    \item \href{https://github.com/JuliaGraphs}{\underline{JuliaGraphs}}: \texttt{LightGraphs.jl} for lightweight graphs, \texttt{MetaGraphs.jl} for graphs with node and edge attributes.
 \end{itemize}
 
-\subsection*{Contrasts with R}
-\emph{Familiar:}
-\begin{itemize}
-    \item Multiple dispatch
-    \item Built in package manager
-\end{itemize}
-\emph{Unfamiliar:}
-\begin{itemize}
-    \item No integer overflow checking
-    \begin{itemize}
-        \item \texttt{SafeInts} package available
-    \end{itemize}
-    \item Pass-by-reference and mutable / immutable data types
-    \item LOTS of syntactic sugar
-    \item Loops as fast as vectorized functions
-\end{itemize}
+
+
 
 
 \end{document}
