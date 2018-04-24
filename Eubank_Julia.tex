@@ -179,7 +179,7 @@ sum_sequence(0, 1_000_000)
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Corollary: Julia is only fast inside functions}
+\begin{frame}[fragile]{Corollary 1: Julia is only fast inside functions}
 \begin{minted}[fontsize=\small]{julia}
 # Slow
 total = 0
@@ -199,6 +199,27 @@ function sum_sequence(start, stop)
 end
 sum_sequence(0, 1_000_000)
 \end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]{Corollary 2: Type Stability for Max Speed}
+
+\begin{minted}{julia}
+function return_if_even(a_number)
+    if a_number % 2 == 0
+        return a_number
+    end
+    if a_number % 2 != 0
+        return "This is not even!"
+    end
+end
+\end{minted}
+You can help the compiler by ensuring that, \alert{conditional on the type of arguments}, all intermediate and output variables will always be of the same type.\\
+This function is \alert{not} type stable because:
+\begin{itemize}
+    \item If \texttt{a\_number} is an even integer, it returns an integer, but
+    \item If \texttt{a\_number} is an odd integer, it returns a string.
+\end{itemize}
 \end{frame}
 
 
@@ -307,6 +328,54 @@ y = x * β + ϵ
 \end{minted}
 \end{frame}
 
+\begin{frame}[c]{Features: Meta-Programming}
+You can write Julia code that writes Julia code!
+\end{frame}
+
+
+
+\subsection*{Contrasts with Python}
+\emph{Familiar:}
+\begin{itemize}
+    \item Duck-typing
+    \item Pass by reference
+    \item Iterators
+    \item List (and array) comprehensions
+\end{itemize}
+\emph{Unfamiliar:}
+\begin{itemize}
+    \item No integer overflow checking
+    \begin{itemize}
+        \item \texttt{SafeInts} package available
+    \end{itemize}
+    \item Built in Package Manager
+    \begin{itemize}
+        \item No \texttt{conda} needed!
+        \item No name spaces \emph{yet}; coming in new package manager with 1.0 release.
+    \end{itemize}
+    \item Not white-space sensitive
+    \item Indexes start at 1, not 0
+    \item Multiple dispatch for functions
+    \item Loops as fast as vectorized functions
+\end{itemize}
+
+\subsection*{Contrasts with R}
+\emph{Familiar:}
+\begin{itemize}
+    \item Multiple dispatch
+    \item Built in package manager
+\end{itemize}
+\emph{Unfamiliar:}
+\begin{itemize}
+    \item No integer overflow checking
+    \begin{itemize}
+        \item \texttt{SafeInts} package available
+    \end{itemize}
+    \item Pass-by-reference and mutable / immutable data types
+    \item LOTS of syntactic sugar
+    \item Loops as fast as vectorized functions
+\end{itemize}
+
 \begin{frame}[c]{Not 1.0 Yet...}
 Currently Stable Release: 0.6.2
 Pending Release: 0.7
@@ -321,9 +390,9 @@ Pending Release: 0.7
 
 \begin{frame}[c]{Expected changes}
 \begin{itemize}
-    \pause \item Major compiler improvements for missing data
-    \pause \item New package manager
-    \pause \item Missing data type moving to core library
+    \item Handful of syntax changes
+    \item Major compiler improvements for missing data
+    \item New package manager
 \end{itemize}
 \end{frame}
 
@@ -336,6 +405,11 @@ Pending Release: 0.7
         \item 6. Functions
         \item 10. Multiple Dispatch
     \end{itemize}
+\end{frame}
+
+
+\begin{frame}[c]{Next Steps}
+ See \texttt{Eubank_JuliaResources.pdf} at \url{www.github.com/nickeubank/JuliaOverview} for links for installing Julia, installing an IDE, where to find tutorials, and more!
 \end{frame}
 
 
